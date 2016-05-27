@@ -3,11 +3,21 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  '@ngrx': 'vendor/@ngrx'
 };
 
 /** User packages configuration. */
 const packages: any = {
 };
+
+const ngrxPkgs:string[] = [
+  'core',
+  'store'
+];
+
+ngrxPkgs.forEach((pkg) => {
+  packages[`@ngrx/${pkg}`] = {main: `${pkg}.js`};
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -25,8 +35,6 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
-  '@ngrx/store',
-  '@ngrx/core',
 
   // App specific barrels.
   'app',
@@ -47,7 +55,6 @@ declare var System: any;
 System.config({
   map: {
     '@angular': 'vendor/@angular',
-    '@ngrx': 'vendor/@ngrx',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js'
   },

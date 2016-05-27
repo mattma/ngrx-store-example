@@ -12,8 +12,7 @@ module.exports = function(defaults) {
       'reflect-metadata/**/*.+(js|js.map)',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      '@ngrx/store/*.js',
-      '@ngrx/core/**/*.js'
+      '@ngrx/**/*.js'
     ]
   });
 };
