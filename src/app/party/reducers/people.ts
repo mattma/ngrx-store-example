@@ -4,7 +4,7 @@ import {
   REMOVE_PERSON,
   REMOVE_GUEST,
   TOGGLE_ATTENDING
-} from '../planner/models/people';
+} from '../models/people';
 
 import { details } from './details';
 

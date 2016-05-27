@@ -8,7 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   `
 })
 export class PersonInput {
-  @Output addPerson = new EventEmitter();
+  @Output() addPerson = new EventEmitter();
 
   add (personName) {
     this.addPerson.emit(personName.value);

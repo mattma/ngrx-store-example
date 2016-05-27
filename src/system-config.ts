@@ -25,6 +25,8 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  '@ngrx/store',
+  '@ngrx/core',
 
   // App specific barrels.
   'app',
@@ -45,6 +47,7 @@ declare var System: any;
 System.config({
   map: {
     '@angular': 'vendor/@angular',
+    '@ngrx': 'vendor/@ngrx',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js'
   },

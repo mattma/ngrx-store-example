@@ -2,7 +2,7 @@ import {
   ADD_GUEST,
   REMOVE_GUEST,
   TOGGLE_ATTENDING
-} from '../planner/models/people';
+} from '../models/people';
 
 export const details = (state, action) => {
   switch (action.type) {
