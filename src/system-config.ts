@@ -10,14 +10,12 @@ const map: any = {
 const packages: any = {
 };
 
+// loads up ngrx/store package
 const ngrxPkgs:string[] = [
-  'core',
-  'store'
+  'store',
+  'core'
 ];
-
-ngrxPkgs.forEach((pkg) => {
-  packages[`@ngrx/${pkg}`] = {main: `${pkg}.js`};
-});
+ngrxPkgs.forEach((pkg) => packages[`@ngrx/${pkg}`] = {main: 'index'});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
