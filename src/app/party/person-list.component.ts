@@ -12,7 +12,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
          <button (click)="addGuest.emit(person.id)">+</button>
          <button *ngIf="person.guests" (click)="removeGuest.emit(person.id)">-</button>
          Attending?
-         <input type="checkbox" [(ngModel)]="person.attending" (change)="toggleAttending.emit(person.id)" />
+         <input type="checkbox" 
+          [(ngModel)]="person.attending" 
+          (change)="toggleAttending.emit(person.id)" />
          <button (click)="removePerson.emit(person.id)">Delete</button>
       </li>
     </ul>

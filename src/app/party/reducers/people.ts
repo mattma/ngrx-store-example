@@ -9,17 +9,22 @@ import {
 import { details } from './details';
 
 export const people = (state = [], action) => {
-  switch(action.type){
+  switch (action.type) {
     case ADD_PERSON:
       return [
         ...state,
-        Object.assign({}, {id: action.payload.id, name: action.payload.name, guests:0, attending: false})
+        Object.assign({}, {
+          id: action.payload.id,
+          name: action.payload.name,
+          guests: 0,
+          attending: false
+        })
       ];
 
     case REMOVE_PERSON:
       return state
         .filter(person => person.id !== action.payload);
-    //to shorten our case statements, delegate detail updates to second private reducer
+    // to shorten our case statements, delegate detail updates to second private reducer
     case ADD_GUEST:
       return state.map(person => details(person, action));
 
@@ -28,7 +33,7 @@ export const people = (state = [], action) => {
 
     case TOGGLE_ATTENDING:
       return state.map(person => details(person, action));
-    //always have default return of previous state when action is not relevant
+    // always have default return of previous state when action is not relevant
     default:
       return state;
   }
