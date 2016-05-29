@@ -8,7 +8,7 @@ export const initialValue = {
   details: {}
 };
 
-export default combineReducers({
+export const reducers = combineReducers({
   people,
   details
 });
