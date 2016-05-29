@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-
-import { PersonInput } from "./person-input.component";
-import { PersonList } from "./person-list.component";
+import { AppSchema } from '../shared/state.model';
+import { PersonInput } from './person-input.component';
+import { PersonList } from './person-list.component';
 import {
-  ADD_PERSON, ADD_GUEST, REMOVE_GUEST, REMOVE_PERSON,
+  ADD_PERSON,
+  ADD_GUEST,
+  REMOVE_GUEST,
+  REMOVE_PERSON,
   TOGGLE_ATTENDING
-} from "./models/people";
+} from './models/people';
 
 @Component({
   moduleId: module.id,
@@ -32,7 +35,7 @@ export class PartyComponent {
   public people;
   private subscription;
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<AppSchema>) {
     this.subscription = store.select('people')
       .subscribe(people => this.people = people);
 
