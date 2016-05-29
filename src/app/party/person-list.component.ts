@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   template: `
     <ul>
       <li 
-        *ngFor="#person of people"
+        *ngFor="let person of people"
         [class.attending]="person.attending"
       >
          {{person.name}} - Guests: {{person.guests}}
