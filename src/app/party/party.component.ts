@@ -22,7 +22,7 @@ import {
     </person-input>
     
     <person-list
-      [people]="people"
+      [people]="people | async"
       (addGuest)="addGuest($event)"
       (removeGuest)="removeGuest($event)"
       (removePerson)="removePerson($event)"
@@ -33,18 +33,15 @@ import {
 })
 export class PartyComponent {
   public people;
-  private subscription;
 
   constructor(private store: Store<AppSchema>) {
-    this.subscription = store.select('people')
-      .subscribe(people => this.people = people);
-
-    console.log('this.people: ', this.people);
+    this.people = store.select('people');
   }
 
-  addPerson (name) {
+  addPerson (name: string) {
     this.store.dispatch({
       type: ADD_PERSON,
+      // @TODO: replace name with `id: id()`
       payload: { id: name, name }
     });
   }
@@ -75,9 +72,5 @@ export class PartyComponent {
       type: TOGGLE_ATTENDING,
       payload: id
     });
-  }
-
-  ngOnDestroy () {
-    this.subscription.unsubscribe();
   }
 }

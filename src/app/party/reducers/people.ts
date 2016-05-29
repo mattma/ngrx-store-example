@@ -1,3 +1,4 @@
+import { Action } from '@ngrx/store';
 import {
   ADD_PERSON,
   ADD_GUEST,
@@ -5,10 +6,9 @@ import {
   REMOVE_GUEST,
   TOGGLE_ATTENDING
 } from '../models/people';
-
 import { details } from './details';
 
-export const people = (state = [], action) => {
+export const people = (state = [], action: Action) => {
   switch (action.type) {
     case ADD_PERSON:
       return [
@@ -22,8 +22,8 @@ export const people = (state = [], action) => {
       ];
 
     case REMOVE_PERSON:
-      return state
-        .filter(person => person.id !== action.payload);
+      return state.filter(person => person.id !== action.payload);
+    
     // to shorten our case statements, delegate detail updates to second private reducer
     case ADD_GUEST:
       return state.map(person => details(person, action));
@@ -33,6 +33,7 @@ export const people = (state = [], action) => {
 
     case TOGGLE_ATTENDING:
       return state.map(person => details(person, action));
+    
     // always have default return of previous state when action is not relevant
     default:
       return state;
