@@ -14,9 +14,4 @@ describe('App: Rxstore', () => {
       inject([RxstoreAppComponent], (app: RxstoreAppComponent) => {
     expect(app).toBeTruthy();
   }));
-
-  it('should have as title \'rxstore works!\'',
-      inject([RxstoreAppComponent], (app: RxstoreAppComponent) => {
-    expect(app.title).toEqual('rxstore works!');
-  }));
 });

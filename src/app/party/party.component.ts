@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { AppSchema } from '../shared/state.model';
 import { PersonInput } from './person-input.component';
 import { PersonList } from './person-list.component';
+import { FilterSelect } from './party-filter.component';
 import {
   ADD_PERSON,
   ADD_GUEST,
@@ -10,19 +12,29 @@ import {
   REMOVE_PERSON,
   TOGGLE_ATTENDING
 } from './models/people';
+import 'rxjs/add/operator/combineLatest';
 
 @Component({
   moduleId: module.id,
   selector: 'app-party',
-  directives: [PersonInput, PersonList],
+  directives: [PersonInput, PersonList, FilterSelect],
   template: `
     <h3>@ngrx/store Party Planner</h3>
+    <!--<party-stats-->
+      <!--[invited]="(people | async)?.length"-->
+      <!--[attending]="(attending | async)?.length"-->
+      <!--[guests]="(guests | async)">-->
+    <!--</party-stats>-->
+
+    <filter-select (updateFilter)="updateFilter($event)">
+    </filter-select>
     
     <person-input (addPerson)="addPerson($event)">
     </person-input>
     
     <person-list
       [people]="people | async"
+      [filter]="filter | async"
       (addGuest)="addGuest($event)"
       (removeGuest)="removeGuest($event)"
       (removePerson)="removePerson($event)"
@@ -32,10 +44,31 @@ import {
   `
 })
 export class PartyComponent {
-  public people;
+  public people: Observable<Array<any>>;
+  filter: Observable<any>;
+  // attending: boolean;
+  // guests: any;
+  // total: number;
+  model: any;
 
   constructor(private store: Store<AppSchema>) {
     this.people = store.select('people');
+    this.filter = store.select('filter');
+
+/*    this.model = this.people
+      .combineLatest(
+        this.filter,
+        (people, filter) => {
+          console.log('people: ', people);
+          console.log('filter: ', filter);
+          // this.people = people;
+          // this.filter = filter;
+          // total: people.length,
+          // people: people
+          // attending: people.filter(person => person.attending).length,
+          // guests: people.reduce((acc, curr) => acc + curr.guests, 0)
+        }
+      );*/
   }
 
   addPerson (name: string) {
