@@ -4,11 +4,19 @@ import {
   ADD_GUEST,
   REMOVE_PERSON,
   REMOVE_GUEST,
-  TOGGLE_ATTENDING
+  TOGGLE_ATTENDING,
+  SHOW_ATTENDING
 } from '../models/people';
-import { details } from './details';
+import personReducer, { PersonState } from './person';
+import filterReducer from './filter';
 
-export const people = (state = [], action: Action) => {
+export interface PeopleState extends Array<PersonState> { }
+
+const initialState: PeopleState = [];
+
+export default (state = initialState, action: Action): PeopleState => {
+  console.log('state: ', state);
+  console.log('action: ', action);
   switch (action.type) {
     case ADD_PERSON:
       return [
@@ -26,13 +34,16 @@ export const people = (state = [], action: Action) => {
     
     // to shorten our case statements, delegate detail updates to second private reducer
     case ADD_GUEST:
-      return state.map(person => details(person, action));
+      return state.map(person => personReducer(person, action));
 
     case REMOVE_GUEST:
-      return state.map(person => details(person, action));
+      return state.map(person => personReducer(person, action));
 
     case TOGGLE_ATTENDING:
-      return state.map(person => details(person, action));
+      return filterReducer(state, action);
+
+    case SHOW_ATTENDING:
+      return state.map(person => person.attending);
     
     // always have default return of previous state when action is not relevant
     default:

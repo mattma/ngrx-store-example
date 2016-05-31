@@ -51,24 +51,24 @@ export class PartyComponent {
   // total: number;
   model: any;
 
-  constructor(private store: Store<AppSchema>) {
+  constructor (private store: Store<AppSchema>) {
     this.people = store.select('people');
     this.filter = store.select('filter');
 
-/*    this.model = this.people
-      .combineLatest(
-        this.filter,
-        (people, filter) => {
-          console.log('people: ', people);
-          console.log('filter: ', filter);
-          // this.people = people;
-          // this.filter = filter;
-          // total: people.length,
-          // people: people
-          // attending: people.filter(person => person.attending).length,
-          // guests: people.reduce((acc, curr) => acc + curr.guests, 0)
-        }
-      );*/
+    /*    this.model = this.people
+     .combineLatest(
+     this.filter,
+     (people, filter) => {
+     console.log('people: ', people);
+     console.log('filter: ', filter);
+     // this.people = people;
+     // this.filter = filter;
+     // total: people.length,
+     // people: people
+     // attending: people.filter(person => person.attending).length,
+     // guests: people.reduce((acc, curr) => acc + curr.guests, 0)
+     }
+     );*/
   }
 
   addPerson (name: string) {
@@ -80,30 +80,22 @@ export class PartyComponent {
   }
 
   addGuest (id) {
-    this.store.dispatch({
-      type: ADD_GUEST,
-      payload: id
-    });
+    this.store.dispatch({ type: ADD_GUEST, payload: id });
   }
 
   removeGuest (id) {
-    this.store.dispatch({
-      type: REMOVE_GUEST,
-      payload: id
-    });
+    this.store.dispatch({ type: REMOVE_GUEST, payload: id });
   }
 
   removePerson (id) {
-    this.store.dispatch({
-      type: REMOVE_PERSON,
-      payload: id
-    });
+    this.store.dispatch({ type: REMOVE_PERSON, payload: id });
   }
 
   toggleAttending (id) {
-    this.store.dispatch({
-      type: TOGGLE_ATTENDING,
-      payload: id
-    });
+    this.store.dispatch({ type: TOGGLE_ATTENDING, payload: id });
+  }
+
+  updateFilter (filter: string) {
+    this.store.dispatch({ type: filter });
   }
 }

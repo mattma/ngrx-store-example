@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   SHOW_ATTENDING,
   SHOW_ALL,
@@ -18,10 +18,11 @@ import {
     `
 })
 export class FilterSelect {
-  public filters = [
-    {friendly: "All", action: SHOW_ALL},
-    {friendly: "Attending", action: SHOW_ATTENDING},
-    {friendly: "Attending w/ Guests", action: SHOW_WITH_GUESTS}
-  ];
   @Output() updateFilter: EventEmitter<string> = new EventEmitter<string>();
+  
+  public filters = [
+    { friendly: "All", action: SHOW_ALL },
+    { friendly: "Attending", action: SHOW_ATTENDING },
+    { friendly: "Attending w/ Guests", action: SHOW_WITH_GUESTS }
+  ];
 }

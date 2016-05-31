@@ -31,28 +31,15 @@ import { storeLogger } from 'ngrx-store-logger';
  * the state of the reducer plus any selector functions. The `* as`
  * notation packages up all of the exports into a single object.
  */
-import { people } from '../party/reducers/people';
-import { details } from '../party/reducers/details';
-import { filter } from '../party/reducers/filter';
+import people, * as fromPeople from '../party/reducers/people';
 
 /**
  * each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface AppState {
-  // router: RouterState;
-  // search: fromSearch.SearchState;
-  // books: fromBooks.BooksState;
-  // collection: fromCollection.CollectionState;
-  people: Array<any>;
-  details: Object;
+  people: fromPeople.PeopleState;
 }
-
-export const initialValue = {
-  people: [],
-  details: {},
-  filter: 'SHOW_ALL'
-};
 
 /**
  * Because metareducers take a reducer function and return a new reducer,
@@ -62,7 +49,5 @@ export const initialValue = {
  * the result from right to left.
  */
 export default compose(storeLogger(), combineReducers)({
-  people,
-  details,
-  filter
+  people
 });

@@ -1,6 +1,6 @@
 import { provideStore } from '@ngrx/store';
-import reducers, { initialValue } from './reducers';
+import reducers from './reducers';
 
 export const STORE_PROVIDERS = [
-  provideStore(reducers, initialValue)
+  provideStore(reducers)
 ];
